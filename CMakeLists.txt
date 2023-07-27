@@ -258,7 +258,9 @@ if (MSVC)
     ADD_DEFINITIONS( -DBOOST_ALL_DYN_LINK )
 else()
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OS_CXX_FLAGS} -g ${OPTIMIZE} -std=c++14 ${NO_DEPRECATED} ${EXPORTSYMBOLS}")
-    set(USE_RT "rt")
+    if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Android")
+        set(USE_RT "rt")
+    endif()
 endif()
 
 ################################################################################
