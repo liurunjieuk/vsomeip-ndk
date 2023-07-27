@@ -80,6 +80,17 @@ endif()
     add_definitions(-D_GTHREAD_USE_MUTEX_INIT_FUNC -D_GTHREAD_USE_RECURSIVE_MUTEX_INIT_FUNC)
 endif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Android")
+    set(OS "ANDROID")
+    set(DL_LIBRARY "")
+    set(EXPORTSYMBOLS "")
+    set(NO_DEPRECATED "")
+    set(OPTIMIZE "")
+
+    find_library(ANDROID_LOG_LIB log)
+    set(SystemD_LIBRARIES ${ANDROID_LOG_LIB})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
     set(DL_LIBRARY "")
     set(EXPORTSYMBOLS "")

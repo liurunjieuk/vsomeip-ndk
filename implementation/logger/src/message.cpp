@@ -10,52 +10,13 @@
 #include <iostream>
 
 #ifdef ANDROID
-#include <utils/Log.h>
-
-#ifdef ALOGE
-#undef ALOGE
-#endif
-
-#define ALOGE(LOG_TAG, ...) ((void)ALOG(LOG_ERROR, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGE ALOGE
-#endif
-
-#ifdef ALOGW
-#undef ALOGW
-#endif
-
-#define ALOGW(LOG_TAG, ...) ((void)ALOG(LOG_WARN, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGW ALOGW
-#endif
-
-#ifdef ALOGI
-#undef ALOGI
-#endif
-
-#define ALOGI(LOG_TAG, ...) ((void)ALOG(LOG_INFO, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGI ALOGI
-#endif
-
-#ifdef ALOGD
-#undef ALOGD
-#endif
-
-#define ALOGD(LOG_TAG, ...) ((void)ALOG(LOG_DEBUG, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGD ALOGD
-#endif
-
-#ifdef ALOGV
-#undef ALOGV
-#endif
-
-#define ALOGV(LOG_TAG, ...) ((void)ALOG(LOG_VERBOSE, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGV ALOGV
-#endif
+#include <android/log.h>
+#define LOG_TAG "debug"
+#define ALOGV(fmt, args...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, fmt, ##args)
+#define ALOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, fmt, ##args)
+#define ALOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+#define ALOGW(fmt, args...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, fmt, ##args)
+#define ALOGE(fmt, args...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, fmt, ##args)
 
 #endif
 

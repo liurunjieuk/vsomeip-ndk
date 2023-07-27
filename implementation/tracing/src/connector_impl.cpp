@@ -19,16 +19,13 @@
 #include "../../utility/include/byteorder.hpp"
 
 #ifdef ANDROID
-#include <utils/Log.h>
-
-#ifdef ALOGI
-#undef ALOGI
-#endif
-
-#define ALOGI(LOG_TAG, ...) ((void)ALOG(LOG_INFO, LOG_TAG, __VA_ARGS__))
-#ifndef LOGE
-#define LOGI ALOGI
-#endif
+#include <android/log.h>
+#define LOG_TAG "debug"
+#define ALOGV(fmt, args...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, fmt, ##args)
+#define ALOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, fmt, ##args)
+#define ALOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+#define ALOGW(fmt, args...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, fmt, ##args)
+#define ALOGE(fmt, args...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, fmt, ##args)
 
 #endif
 
